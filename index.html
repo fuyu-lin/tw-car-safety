@@ -143,6 +143,47 @@
             color: #1976d2;
         }
 
+        /* 誰該參與附議區塊 */
+        .who-section {
+            max-width: 700px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .who-section img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        .who-section .mini-cta {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 14px 36px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .who-section .mini-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
+            background-color: #d63031;
+        }
+
+        @media (max-width: 768px) {
+            .who-section {
+                margin: 35px auto;
+            }
+        }
+
         /* 頁尾 */
         footer {
             text-align: center;
@@ -189,21 +230,16 @@
   
         </h1>
 
-        <!-- 轉發分享區塊：跨兩欄 -->
-            <div class="share-section">
-                <h2>🚨 請求轉發！讓我們出一份力</h2>
-                <p>我們迫切需要熱心人士幫忙附議/轉發（PTT、FB、Dcard、Threads、LINE 群組....）。請讓這張插圖所呈現的訊息被更多人看見，不管是當前車主未來車主或是乘客都能受益，感謝你的幫忙！</p>
-            </div>
+
+        
 
         <!-- 議題核心與訴求區塊對應 -->
         <div class="petition-core">
             <div class="petition-details">
-                <h2 class="petition-details-title">我們的具體訴求與行動:</h2>
-				<p>建立新車安全資訊透明化制度，整頓目前車市歪風，別讓消費者用生命買單</p>
-                <p>坦白說，身為權益受損的人，能做的事情真的很有限，這個提案也無法對當下提供立竿見影的幫助。</p>
-                <p><strong>「但是，不能就這樣算了。」</strong></p>
-                <p>正如插圖所呈現的，我們希望透過這個連署，對車商形成壓力，迫使主管機關給予正面回覆。這不僅僅是為了現在車主，更是為了建立更健康的車市環境，<strong>避免同樣的問題在未來繼續發生、危害下一位車主</strong>。</p>
-                <p>「不應該因車商的利益 而讓家人的安全受到打折」如果您同意這個議題，請務必協助附議，感謝您的一份力！</p>
+                
+                <div class="who-section">
+            <img src="join-reasons.png" alt="哪些人特別值得參與這次附議">
+        </div>
             </div>
 
             <!-- 附議行動區塊 -->
@@ -217,6 +253,13 @@
 
             
         </div>
+		        <!-- 轉發分享區塊：跨兩欄 -->
+            <div class="share-section">
+                <h2>🚨 請求轉發！讓我們出一份力</h2>
+                <p>我們迫切需要熱心人士幫忙附議/轉發（PTT、FB、Dcard、Threads、LINE 群組....）。請讓這張插圖所呈現的訊息被更多人看見，不管是當前車主未來車主或是乘客都能受益，感謝你的幫忙！</p>
+            </div>
+
+        <!-- 誰該參與附議區塊 -->
 
     </div>
 
