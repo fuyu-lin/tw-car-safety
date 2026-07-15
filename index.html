@@ -143,6 +143,61 @@
             color: #1976d2;
         }
 
+        /* ================= 一鍵分享按鈕樣式 ================= */
+        .share-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 6px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .share-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .share-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 各平台顏色 */
+        .btn-copy { background-color: #34495e; } /* 深灰 */
+        .btn-line { background-color: #06C755; } /* LINE綠 */
+        .btn-fb { background-color: #1877F2; }   /* FB藍 */
+        .btn-threads { background-color: #000000; } /* 黑色 */
+
+        /* 複製成功的提示小特效 */
+        .copy-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1em;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        /* =================================================== */
+
         /* 誰該參與附議區塊 */
         .who-section {
             max-width: 700px;
@@ -158,29 +213,16 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.12);
         }
 
-        .who-section .mini-cta {
-            display: inline-block;
-            margin-top: 25px;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            padding: 14px 36px;
-            border-radius: 50px;
-            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .who-section .mini-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
-            background-color: #d63031;
-        }
-
         @media (max-width: 768px) {
             .who-section {
                 margin: 35px auto;
+            }
+            .share-buttons-container {
+                flex-direction: column; /* 手機版按鈕直立排列，方便點擊 */
+            }
+            .share-btn {
+                width: 100%;
+                box-sizing: border-box;
             }
         }
 
@@ -218,31 +260,20 @@
 </head>
 <body>
 
-    <!-- 核心視覺區：直接呈現插圖 -->
     <div class="banner-container">
-        <!-- 插圖檔名必須為 banner.jpg -->
         <img src="banner.jpg" alt="車輛權益受害者連署議題核心插圖" class="core-illustration">
     </div>
 
-    <!-- 主要內容區 -->
     <div class="main-container">
-        <h1 class="main-title">60天內我們需要 5000 人，一起向主管機關要回覆！<br>
-  
-        </h1>
+        <h1 class="main-title">60天內我們需要 5000 人，一起向主管機關要回覆！<br></h1>
 
-
-        
-
-        <!-- 議題核心與訴求區塊對應 -->
         <div class="petition-core">
             <div class="petition-details">
-                
                 <div class="who-section">
-            <img src="join-reasons.png" alt="哪些人特別值得參與這次附議">
-        </div>
+                    <img src="join-reasons.png" alt="哪些人特別值得參與這次附議">
+                </div>
             </div>
 
-            <!-- 附議行動區塊 -->
             <div class="petition-action-block">
                 <h3>👇 點擊下方按鈕進入公共政策平台進行附議 👇</h3>
                 <a href="https://join.gov.tw/idea/detail/3dd3430e-1815-452a-993e-80f987fe022d" target="_blank" class="cta-button">
@@ -250,22 +281,65 @@
                 </a>
                 <p style="font-size: 0.9em; color: #777; margin-top: 10px;">(頁面將直接開啟國發會連署平台)</p>
             </div>
-
-            
         </div>
-		        <!-- 轉發分享區塊：跨兩欄 -->
-            <div class="share-section">
-                <h2>🚨 請求轉發！讓我們出一份力</h2>
-                <p>我們迫切需要熱心人士幫忙附議/轉發（PTT、FB、Dcard、Threads、LINE 群組....）。請讓這張插圖所呈現的訊息被更多人看見，不管是當前車主未來車主或是乘客都能受益，感謝你的幫忙！</p>
+
+        <div class="share-section">
+            <h2>🚨 請求轉發！讓我們出一份力</h2>
+            <p>我們迫切需要熱心人士幫忙附議/轉發（PTT、FB、Dcard、Threads、LINE 群組....）。請讓這張插圖所呈現的訊息被更多人看見，不管是當前車主、未來車主或是乘客都能受益，感謝你的幫忙！</p>
+            
+            <div class="share-buttons-container">
+                <button class="share-btn btn-copy" onclick="copyShareLink()">📋 複製推廣連結與文字</button>
+                <a href="#" id="lineShare" target="_blank" class="share-btn btn-line">💬 分享到 LINE</a>
+                <a href="#" id="fbShare" target="_blank" class="share-btn btn-fb">👥 分享到 Facebook</a>
+                <a href="#" id="threadsShare" target="_blank" class="share-btn btn-threads">🧵 分享到 Threads</a>
             </div>
-
-        <!-- 誰該參與附議區塊 -->
-
+        </div>
     </div>
+
+    <div id="toast" class="copy-toast">連結與邀請文字已複製成功！</div>
 
     <footer>
         此為個人發起之臨時連署推廣網頁 | 資料來源為公共政策網路參與平台 | 本網頁核心資訊已妥善整合至上方插圖中。
     </footer>
 
+    <script>
+        // 設定推廣網址
+        const pageUrl = "https://fuyu-lin.github.io/tw-car-safety/";
+        const shareTitle = "【急需5000人附議！】拒絕類似車輛安全問題再度發生，別讓消費者用生命買單！請協助轉發並一同連署：";
+        const fullShareText = `${shareTitle}\n${pageUrl}`;
+
+        // 1. 複製連結與文字功能
+        function copyShareLink() {
+            navigator.clipboard.writeText(fullShareText).then(() => {
+                showToast();
+            }).catch(err => {
+                // 備用複製方案
+                const tempTextArea = document.createElement("textarea");
+                tempTextArea.value = fullShareText;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempTextArea);
+                showToast();
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        }
+
+        // 2. LINE 分享連結設定
+        document.getElementById('lineShare').href = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareTitle)}`;
+
+        // 3. Facebook 分享連結設定
+        document.getElementById('fbShare').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+
+        // 4. Threads 分享連結設定
+        document.getElementById('threadsShare').href = `https://threads.net/intent/post?text=${encodeURIComponent(fullShareText)}`;
+    </script>
 </body>
 </html>
